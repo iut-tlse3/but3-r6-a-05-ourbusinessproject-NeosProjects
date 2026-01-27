@@ -7,30 +7,30 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "enterprises")
 public class Enterprise {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
+    @NotEmpty
     @Column(nullable = false)
     private String name;
 
-    @NotBlank
+    @NotEmpty
     @Size(min = 10)
     @Column(nullable = false, length = 2000)
     private String description;
 
-    @NotBlank
+    @NotEmpty
     @Column(nullable = false)
     private String contactName;
 
-    @NotBlank
+    @NotEmpty
     @Email
     @Column(nullable = false)
     private String contactEmail;
