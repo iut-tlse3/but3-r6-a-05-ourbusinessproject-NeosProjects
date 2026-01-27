@@ -1,12 +1,25 @@
 package ourbusinessproject;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "projects")
 public class Project {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @NotBlank(message = "title must not be blank")
-    @NotNull(message = "title must not be null")
+    @Column(nullable = false)
     private String title;
+
+    @Column(length = 2000)
     private String description;
 
     public Project() {
@@ -14,6 +27,16 @@ public class Project {
         this.description = null;
     }
 
+    // id
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    // title
     public String getTitle() {
         return title;
     }
@@ -22,6 +45,7 @@ public class Project {
         this.title = title;
     }
 
+    // description
     public String getDescription() {
         return description;
     }

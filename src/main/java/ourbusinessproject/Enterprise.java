@@ -1,27 +1,38 @@
 package ourbusinessproject;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+@Entity
+@Table(name = "enterprises")
 public class Enterprise {
-    @NotNull
-    @NotEmpty
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank
+    @Column(nullable = false)
     private String name;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank
     @Size(min = 10)
+    @Column(nullable = false, length = 2000)
     private String description;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank
+    @Column(nullable = false)
     private String contactName;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank
     @Email
+    @Column(nullable = false)
     private String contactEmail;
 
     public Enterprise() {
@@ -31,6 +42,16 @@ public class Enterprise {
         this.contactEmail = null;
     }
 
+    // id
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    // name
     public String getName() {
         return name;
     }
@@ -39,6 +60,7 @@ public class Enterprise {
         this.name = name;
     }
 
+    // description
     public String getDescription() {
         return description;
     }
@@ -47,6 +69,7 @@ public class Enterprise {
         this.description = description;
     }
 
+    // contactName
     public String getContactName() {
         return contactName;
     }
@@ -55,6 +78,7 @@ public class Enterprise {
         this.contactName = contactName;
     }
 
+    // contactEmail
     public String getContactEmail() {
         return contactEmail;
     }
