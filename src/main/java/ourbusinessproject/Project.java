@@ -1,12 +1,8 @@
 package ourbusinessproject;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "projects")
@@ -22,9 +18,21 @@ public class Project {
     @Column(length = 2000)
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "enterprise_id")
+    @NotNull
+    private Enterprise enterprise;
+
     public Project() {
         this.title = null;
         this.description = null;
+        this.enterprise = null;
+    }
+
+    public Project(String title, String description, Enterprise enterprise) {
+        this.title = title;
+        this.description = description;
+        this.enterprise = enterprise;
     }
 
     // id
@@ -52,5 +60,13 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
+    }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
     }
 }

@@ -2,7 +2,6 @@ package ourbusinessproject;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,10 +18,11 @@ public class EnterpriseProjectService {
         return this.entityManager;
     }
 
-    public Project newProject(String title, String description) {
+    public Project newProject(String title, String description, Enterprise enterprise) {
         Project newProject = new Project();
         newProject.setTitle(title);
         newProject.setDescription(description);
+        newProject.setEnterprise(enterprise);
         entityManager.persist(newProject);
         entityManager.flush();
         return newProject;
