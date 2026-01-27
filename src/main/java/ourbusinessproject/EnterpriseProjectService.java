@@ -2,6 +2,7 @@ package ourbusinessproject;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,10 +20,20 @@ public class EnterpriseProjectService {
     }
 
     public Project newProject(String title, String description, Enterprise enterprise) {
+        if (enterprise == null){
+            throw new ConstraintViolationException("Enterprise cannot be null", null);
+        }
+
         Project newProject = new Project();
         newProject.setTitle(title);
         newProject.setDescription(description);
         newProject.setEnterprise(enterprise);
+
+        if(enterprise.getProjects() == null) {
+            enterprise.setProjects(new java.util.ArrayList<>());
+        }
+        enterprise.getProjects().add(newProject);
+
         entityManager.persist(newProject);
         entityManager.flush();
         return newProject;

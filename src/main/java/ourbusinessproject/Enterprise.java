@@ -5,10 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "enterprises")
@@ -34,6 +38,9 @@ public class Enterprise {
     @Email
     @Column(nullable = false)
     private String contactEmail;
+
+    @OneToMany(mappedBy = "enterprise")
+    private Collection<Project> projects = null;
 
     public Enterprise() {
         this.name = null;
@@ -85,5 +92,13 @@ public class Enterprise {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public void setProjects(Collection<Project> projects) {
+        this.projects = projects;
+    }
+
+    public Collection<Project> getProjects() {
+        return this.projects;
     }
 }
