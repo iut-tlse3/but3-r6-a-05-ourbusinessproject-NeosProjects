@@ -5,6 +5,8 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EnterpriseProjectService {
 
@@ -56,5 +58,9 @@ public class EnterpriseProjectService {
 
     public Enterprise findEnterpriseById(Long enterpriseId) {
         return entityManager.find(Enterprise.class, enterpriseId);
+    }
+
+    public List<Project> findAllProjects() {
+        return entityManager.createQuery("SELECT p FROM Project p order by title", Project.class).getResultList();
     }
 }
