@@ -1,5 +1,6 @@
 package ourbusinessproject;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +12,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -40,6 +40,7 @@ public class Enterprise {
     private String contactEmail;
 
     @OneToMany(mappedBy = "enterprise")
+    @JsonIgnore
     private Collection<Project> projects = null;
 
     public Enterprise() {
@@ -102,3 +103,4 @@ public class Enterprise {
         return this.projects;
     }
 }
+

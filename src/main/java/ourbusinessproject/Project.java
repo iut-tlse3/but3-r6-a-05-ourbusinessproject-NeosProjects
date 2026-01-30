@@ -12,10 +12,10 @@ public class Project {
     private Long id;
 
     @NotBlank(message = "title must not be blank")
-    @Column(nullable = false)
+    @Column
     private String title;
 
-    @Column(length = 2000)
+    @Column
     private String description;
 
     @ManyToOne
@@ -70,3 +70,4 @@ public class Project {
         return enterprise;
     }
 }
+
