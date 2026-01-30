@@ -17,7 +17,6 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/projects", method= RequestMethod.GET)
-    @JsonIgnore
     public List<Project> findAllProjectsWithEnterprises() {
         return this.enterpriseProjectService.findAllProjects();
     }

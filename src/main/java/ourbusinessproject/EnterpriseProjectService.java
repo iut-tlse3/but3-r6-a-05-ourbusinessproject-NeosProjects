@@ -61,6 +61,6 @@ public class EnterpriseProjectService {
     }
 
     public List<Project> findAllProjects() {
-        return entityManager.createQuery("SELECT p FROM Project p order by title", Project.class).getResultList();
+        return entityManager.createQuery("SELECT p FROM Project p JOIN FETCH p.enterprise order by p.title", Project.class).getResultList();
     }
 }
