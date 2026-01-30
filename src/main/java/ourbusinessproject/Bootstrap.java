@@ -15,6 +15,7 @@ public class Bootstrap {
     public void init() {
         try {
             initializationService.initProjects();
+            initializationService.initPartnerships();
         } catch (RuntimeException e) {
             // Catching RuntimeException to prevent application crash during initialization
         }
