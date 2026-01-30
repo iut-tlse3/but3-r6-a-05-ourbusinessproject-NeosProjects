@@ -18,6 +18,10 @@ public class InitializationService {
 
     @Transactional
     public void initProjects() {
+        /*
+            Grâce à transactional on voit que si un projet provoque une erreur alors l'entièreté de la méthode est annulée avec un rollback.
+         */
+
         this.initEnterprises();
         this.project1E1 = enterpriseProjectService.newProject("p1E1", "description project 1 E1", getEnterprise1());
         this.project1E2 = enterpriseProjectService.newProject("p1E2", "description project 1 E2", getEnterprise2());
