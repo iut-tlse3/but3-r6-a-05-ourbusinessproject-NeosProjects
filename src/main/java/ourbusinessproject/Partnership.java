@@ -46,4 +46,8 @@ public class Partnership {
     public Project getProject() {
         return project;
     }
+
+    public Long getId() {
+        return this.id;
+    }
 }
